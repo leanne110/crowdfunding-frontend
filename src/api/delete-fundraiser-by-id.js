@@ -1,18 +1,16 @@
-async function postFundraiser(fundraiserData) {
-  const url = `${import.meta.env.VITE_API_URL}/fundraisers/`;
+async function deleteFundraisersById(id) {
+  const url = `${import.meta.env.VITE_API_URL}/fundraisers/${id}/`;
   const token = window.localStorage.getItem('token');
-
   const response = await fetch(url, {
-    method: 'POST', // We need to tell the server that we are sending JSON data so we set the Content-Type header to application/json
+    method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `token ${token}`,
     },
-    body: JSON.stringify(fundraiserData),
   });
 
   if (!response.ok) {
-    const fallbackError = `Error trying to create fundraiser`;
+    const fallbackError = 'Error deleting fundraiser';
 
     const data = await response.json().catch(() => {
       throw new Error(fallbackError);
@@ -22,7 +20,7 @@ async function postFundraiser(fundraiserData) {
     throw new Error(errorMessage);
   }
 
-  return await response.json();
+  return true;
 }
 
-export default postFundraiser;
+export default deleteFundraisersById;

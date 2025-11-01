@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import postFundraiser from '../api/post-fundraisers';
 
 export function FundraiserForm() {
@@ -14,7 +14,6 @@ export function FundraiserForm() {
   });
 
   const [checked, setChecked] = useState(false);
-
 
   const handleChange = (event) => {
 
@@ -35,11 +34,8 @@ export function FundraiserForm() {
 
     postFundraiser(newFundraiser).then((response) => {
       console.log("Fundraiser created:", response);
-    });
-
-
+    })
   }
-
 
 
   return (
@@ -69,7 +65,7 @@ export function FundraiserForm() {
           <input
             type="number"
             id="goal"
-            placeholder="Enter new fundraiser goal"
+            placeholder="Enter your goal"
             onChange={handleChange}
           />
         </div>

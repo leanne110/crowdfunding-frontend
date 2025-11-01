@@ -1,9 +1,9 @@
-async function postFundraiser(fundraiserData) {
-  const url = `${import.meta.env.VITE_API_URL}/fundraisers/`;
+async function updateFundraiser(fundraiserData, id) {
+  const url = `${import.meta.env.VITE_API_URL}/fundraisers/${id}/`;
   const token = window.localStorage.getItem('token');
 
   const response = await fetch(url, {
-    method: 'POST', // We need to tell the server that we are sending JSON data so we set the Content-Type header to application/json
+    method: 'PUT', // We need to tell the server that we are sending JSON data so we set the Content-Type header to application/json
     headers: {
       'Content-Type': 'application/json',
       Authorization: `token ${token}`,
@@ -25,4 +25,4 @@ async function postFundraiser(fundraiserData) {
   return await response.json();
 }
 
-export default postFundraiser;
+export default updateFundraiser;

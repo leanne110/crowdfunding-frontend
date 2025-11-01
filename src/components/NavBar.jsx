@@ -11,7 +11,18 @@ function NavBar() {
 
   return (
     <div>
-      <nav style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+      <nav style={{
+        display: "flex",
+        justifyContent: "flex-end",
+        alignItems: "center",
+        gap: "20px",
+        padding: "15px 30px",
+        backgroundColor: "#f8f8f8",
+        borderBottom: "1px solid #ddd",
+        position: "sticky",
+        top: 0,
+        zIndex: 1000,
+      }}>
         <Link to="/">Home</Link>
         {auth.token ? (
           <Link to="/" onClick={handleLogout}>
@@ -20,8 +31,9 @@ function NavBar() {
         ) : (
           <Link to="/login">Login</Link>
         )}
-        <Link to="/users">Sign Up</Link>
+        {!auth.token && <Link to="/users">Sign Up</Link>}
         <Link to="/newfundraiser">New Fundraiser</Link>
+        {/* <Link to="/about">About</Link> */}
         <Link to="/contact"> Contact</Link>
       </nav>
       <Outlet />

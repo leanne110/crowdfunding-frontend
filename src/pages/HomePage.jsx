@@ -5,10 +5,12 @@ import "./HomePage.css";
 function HomePage() {
   const { fundraisers } = useFundraisers();
   return (
-    <div id="fundraiser-list">
-      {fundraisers.map((fundraiserData, key) => {
-        return <FundraiserCard key={key} fundraiserData={fundraiserData} />;
-      })}
+    <div className="fundraiser-section">
+      <div id="fundraiser-list">
+        {fundraisers.map((fundraiserData, key) => {
+          return <FundraiserCard key={key} fundraiserData={fundraiserData} />;
+        })}
+      </div>
     </div>
   );
 }
