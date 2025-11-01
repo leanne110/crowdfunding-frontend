@@ -1,28 +1,29 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import postFundraiser from '../api/post-fundraisers';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import postFundraiser from "../api/post-fundraisers";
+import "./FundraiserForm.css";
 
 export function FundraiserForm() {
   const navigate = useNavigate();
 
   const [newFundraiser, setNewFundraiser] = useState({
-    owner: '',
-    title: '',
-    description: '',
+    owner: "",
+    title: "",
+    description: "",
     goal: 0,
     image: "https://upload.wikimedia.org/wikipedia/commons/1/18/Dog_Breeds.jpg?20201016183302",
     pledges: [],
-    is_open: true
+    is_open: true,
   });
 
   const [checked, setChecked] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (event) => {
     const { id, value } = event.target;
-    setNewFundraiser((prevFundraiser) => ({
-      ...prevFundraiser,
+    setNewFundraiser((prev) => ({
+      ...prev,
       [id]: value,
     }));
   };
@@ -38,85 +39,58 @@ export function FundraiserForm() {
     };
 
     postFundraiser(fundraiserToSubmit)
-      .then((response) => {
-        console.log("Fundraiser created:", response);
+      .then(() => {
         setSuccessMessage("✅ Fundraiser created successfully!");
-        setErrorMessage('');
-        // Redirect to homepage after short delay
+        setErrorMessage("");
         setTimeout(() => {
-          navigate('/');
+          navigate("/");
         }, 1500);
       })
       .catch((err) => {
-        setErrorMessage("❌ Failed to create fundraiser: " + (err.message || "Unknown error"));
-        setSuccessMessage('');
+
+        if (err.message === "Invalid token.") {
+          setErrorMessage("❌ Failed to create fundraiser: You must be logged in.");
+          setSuccessMessage("");
+        } else {
+          setErrorMessage("❌ Failed to create fundraiser: " + (err.message || "Unknown error"));
+          setSuccessMessage("");
+        }
       });
   };
 
   return (
-    <>
-      <h3>Fundraiser Form</h3>
+    <div className="form-container">
+      {successMessage && <p className="success-message">{successMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-
-      <form style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '400px' }}>
-        <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            placeholder="Enter new fundraiser title"
-            onChange={handleChange}
-          />
+      <form onSubmit={handleSubmit} className="fundraiser-form">
+        <div className="form-group">
+          <label htmlFor="title">Title</label>
+          <input type="text" id="title" placeholder="Enter fundraiser title" onChange={handleChange} required />
         </div>
 
-        <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
-          <label htmlFor="description">Description:</label>
-          <input
-            type="text"
-            id="description"
-            placeholder="Enter new fundraiser description"
-            onChange={handleChange}
-          />
+        <div className="form-group">
+          <label htmlFor="description">Description</label>
+          <textarea id="description" rows="4" placeholder="Enter fundraiser description" onChange={handleChange} required />
         </div>
 
-        <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
-          <label htmlFor="goal">Goal:</label>
-          <input
-            type="number"
-            id="goal"
-            placeholder="Enter your goal"
-            onChange={handleChange}
-          />
+        <div className="form-group">
+          <label htmlFor="goal">Goal Amount</label>
+          <input type="number" id="goal" placeholder="Enter funding goal" onChange={handleChange} required />
         </div>
 
-        <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
-          <label htmlFor="image">Image URL:</label>
-          <input
-            type="text"
-            id="image"
-            placeholder="Paste an image URL"
-            onChange={handleChange}
-            value={newFundraiser.image}
-          />
+        <div className="form-group">
+          <label htmlFor="image">Image URL</label>
+          <input type="text" id="image" placeholder="Paste image link" value={newFundraiser.image} onChange={handleChange} />
         </div>
 
-        <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
-          <label htmlFor="is_open">Is this fundraiser open now?</label>
-          <input
-            type="checkbox"
-            id="is_open"
-            name="is_open"
-            checked={checked}
-            onChange={(e) => setChecked(e.target.checked)}
-          />
+        <div className="form-checkbox">
+          <input type="checkbox" id="is_open" checked={checked} onChange={(e) => setChecked(e.target.checked)} />
+          <label htmlFor="is_open">Fundraiser is Open</label>
         </div>
 
-        <button type="submit" onClick={handleSubmit} style={{ width: '100px' }}>
-          Submit
-        </button>
+        <button type="submit" className="submit-button">Create Fundraiser</button>
       </form>
-    </>
-  )
+    </div>
+  );
 }
