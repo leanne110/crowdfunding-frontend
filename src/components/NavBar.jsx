@@ -13,28 +13,49 @@ function NavBar() {
     <div>
       <nav style={{
         display: "flex",
-        justifyContent: "flex-end",
+        justifyContent: "space-between",
         alignItems: "center",
-        gap: "20px",
-        padding: "15px 30px",
+        padding: "10px 30px",
         backgroundColor: "#f8f8f8",
         borderBottom: "1px solid #ddd",
         position: "sticky",
         top: 0,
         zIndex: 1000,
+        marginBottom: "20px",
+        height: "90px",
+        boxSizing: "border-box"
       }}>
-        <Link to="/">Home</Link>
-        {auth.token ? (
-          <Link to="/" onClick={handleLogout}>
-            Log Out
+
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Link to="/" style={{ textDecoration: "none", fontWeight: "bold" }}>
+            <img
+              src="/treasure_bowl.png"
+              alt="Logo"
+              style={{
+                height: "90px",
+                maxHeight: "90px",
+                objectFit: "contain",
+                display: "block",
+                marginLeft: "20px"
+              }}
+            />
           </Link>
-        ) : (
-          <Link to="/login">Login</Link>
-        )}
-        {!auth.token && <Link to="/users">Sign Up</Link>}
-        <Link to="/newfundraiser">New Fundraiser</Link>
-        {/* <Link to="/about">About</Link> */}
-        <Link to="/contact"> Contact</Link>
+        </div>
+
+
+        <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
+          <Link to="/">Home</Link>
+          {auth.token ? (
+            <Link to="/" onClick={handleLogout}>
+              Log Out
+            </Link>
+          ) : (
+            <Link to="/login">Login</Link>
+          )}
+          {!auth.token && <Link to="/users">Sign Up</Link>}
+          <Link to="/newfundraiser">New Fundraiser</Link>
+          <Link to="/contact">Contact</Link>
+        </div>
       </nav>
       <Outlet />
     </div>
