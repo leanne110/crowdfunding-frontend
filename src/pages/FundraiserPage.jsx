@@ -433,6 +433,7 @@ function FundraiserPage() {
         ) : (
           <div className="fundraiser-info">
             <p className="description">{fundraiserData.description}</p>
+            <p className="fundraiser-date">Created on: {new Date(fundraiserData.date_created).toLocaleDateString()}</p>
             <p><strong>Status:</strong> {fundraiserData.is_open ? "Open" : "Closed"}</p>
             <p><strong>Goal:</strong> ${fundraiserData.goal}</p>
             <p><strong>Total Pledged:</strong> ${fundraiserData.pledges?.reduce((sum, p) => sum + p.amount, 0) || 0}</p>
@@ -449,7 +450,10 @@ function FundraiserPage() {
           {(fundraiserData.pledges || []).length > 0 ? (
             fundraiserData.pledges.map((p) => (
               <li key={p.id} className="pledge-item">
-                ${p.amount} from {p.anonymous ? "anonymous" : p.supporter_name}
+                <div className="pledge-header">
+                  <strong>${p.amount}</strong> from {p.anonymous ? "anonymous" : p.supporter_name}
+                </div>
+                {p.comment && <div className="pledge-comment">💬 {p.comment}</div>}
               </li>
             ))
           ) : (

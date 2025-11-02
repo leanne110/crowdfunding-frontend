@@ -27,7 +27,7 @@ function AboutPage() {
           maxWidth: "800px",
           boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
           textAlign: "center",
-          marginTop: "-80px",  // shift card slightly upward
+          marginTop: "-80px",
         }}
       >
         <h2 style={{ marginBottom: "1rem" }}>About Treasure Bowl</h2>

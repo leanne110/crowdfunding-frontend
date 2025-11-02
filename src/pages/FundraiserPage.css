@@ -45,9 +45,22 @@
 }
 
 .pledge-item {
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
-  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.pledge-header {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.pledge-comment {
+  font-size: 0.9rem;
+  color: #555;
+  background: #f6f6f6;
+  padding: 0.5rem;
+  border-radius: 6px;
 }
 
 .pledge-form {
