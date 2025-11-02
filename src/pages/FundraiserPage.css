@@ -1,0 +1,108 @@
+.fundraiser-wrapper {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+.fundraiser-main {
+  flex: 2;
+}
+
+.fundraiser-sidebar {
+  flex: 1;
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fundraiser-image-large {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.pledge-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.pledge-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.pledge-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pledge-form input[type='text'],
+.pledge-form input[type='number'],
+.pledge-form textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.edit-section input,
+.edit-section textarea {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #bbb;
+}
+
+.edit-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn.primary {
+  background-color: #4caf50;
+  color: white;
+}
+
+.btn.danger {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn.edit-btn {
+  background-color: #2196f3;
+  color: white;
+  margin-top: 20px;
+}
+
+.delete-btn {
+  margin-top: 24px;
+}
