@@ -4,16 +4,16 @@
 
 A screenshot of the homepage:
 
-![A screenshot of the homepage: ](./static/screenshot/homepage.png)
+![A screenshot of the homepage: ](./static/screenshots/homepage.png)
 
 A screenshot of the create fundraiser page:
 
-![A screenshot of the create fundraiser page: ](./static/screenshot/fundraiserpage.png)
+![A screenshot of the create fundraiser page: ](./static/screenshots/fundraiserpage.png)
 
 A screenshot of the pledges:
 
-![A screenshot of the pledges: ](./static/screenshot/pledges.png)
+![A screenshot of the pledges: ](./static/screenshots/pledges.png)
 
 A screenshot of the unauthorized user:
 
-![A screenshot of the unauthorized user: ](./static/screenshot/unauthorized.png)
+![A screenshot of the unauthorized user: ](./static/screenshots/unauthorized.png)
