@@ -7,6 +7,7 @@ function NavBar() {
 
   const handleLogout = () => {
     window.localStorage.removeItem("token");
+    window.localStorage.removeItem("id");
     setAuth({ token: null });
   };
 
